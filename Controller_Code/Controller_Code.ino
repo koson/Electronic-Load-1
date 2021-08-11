@@ -2,6 +2,7 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
+//Function Prototypes
 void drawBarGraph(int level); //Function prototype to draw a bar graph at the top of the screen
 
 //Defines for OLED screen
