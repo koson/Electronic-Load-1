@@ -94,16 +94,14 @@ RETURN
 $Comp
 L power:GND #PWR016
 U 1 1 610FC0E8
-P 7450 4000
-F 0 "#PWR016" H 7450 3750 50  0001 C CNN
-F 1 "GND" H 7455 3827 50  0000 C CNN
-F 2 "" H 7450 4000 50  0001 C CNN
-F 3 "" H 7450 4000 50  0001 C CNN
-	1    7450 4000
+P 7100 4100
+F 0 "#PWR016" H 7100 3850 50  0001 C CNN
+F 1 "GND" H 7105 3927 50  0000 C CNN
+F 2 "" H 7100 4100 50  0001 C CNN
+F 3 "" H 7100 4100 50  0001 C CNN
+	1    7100 4100
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	7450 3850 7650 3850
 Wire Wire Line
 	10950 850  11050 850 
 Wire Wire Line
@@ -194,8 +192,6 @@ F 3 "https://www.ti.com/lit/ds/symlink/opa2277.pdf" H 5450 3550 50  0001 C CNN
 	1    5450 3550
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	7450 3850 7450 4000
 Wire Wire Line
 	5750 3550 7150 3550
 $Comp
@@ -543,13 +539,13 @@ Wire Wire Line
 	1000 7000 1000 7050
 Wire Wire Line
 	1000 7050 950  7050
-Text GLabel 1050 7250 2    50   Input ~ 0
-SDA_MOSI
 Text GLabel 1050 7150 2    50   Input ~ 0
+SDA_MOSI
+Text GLabel 1050 7250 2    50   Input ~ 0
 RESET
-Text GLabel 1050 7350 2    50   Input ~ 0
-MISO
 Text GLabel 1050 7450 2    50   Input ~ 0
+MISO
+Text GLabel 1050 7350 2    50   Input ~ 0
 SCL
 Wire Wire Line
 	950  7150 1050 7150
@@ -753,10 +749,8 @@ Text GLabel 9750 5200 0    50   Input ~ 0
 Fan_Pin
 Wire Wire Line
 	9750 5200 9850 5200
-Text GLabel 2050 2150 2    50   Input ~ 0
+Text GLabel 2050 2050 2    50   Input ~ 0
 Fan_Pin
-Wire Wire Line
-	1950 2150 2050 2150
 $Comp
 L Device:Thermistor_PTC TH1
 U 1 1 6118394A
@@ -829,7 +823,6 @@ F 3 "https://www.usb.org/sites/default/files/documents/usb_type-c.zip" H 10500 1
 	1    10350 1850
 	1    0    0    -1  
 $EndComp
-NoConn ~ 1950 2050
 $Comp
 L Transistor_FET:IRFS4115 Q4
 U 1 1 611744E8
@@ -898,4 +891,28 @@ Wire Wire Line
 	8850 3500 8900 3500
 Wire Wire Line
 	10050 3450 10050 3500
+$Comp
+L Device:Net-Tie_2 NT1
+U 1 1 61171D25
+P 7350 4000
+F 0 "NT1" H 7350 4181 50  0000 C CNN
+F 1 "Net-Tie_2" H 7350 4090 50  0000 C CNN
+F 2 "NetTie:NetTie-2_SMD_Pad2.0mm" H 7350 4000 50  0001 C CNN
+F 3 "~" H 7350 4000 50  0001 C CNN
+	1    7350 4000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7450 4000 7550 4000
+Wire Wire Line
+	7550 4000 7550 3850
+Wire Wire Line
+	7550 3850 7650 3850
+Wire Wire Line
+	7250 4000 7100 4000
+Wire Wire Line
+	7100 4000 7100 4100
+Wire Wire Line
+	1950 2050 2050 2050
+NoConn ~ 1950 2150
 $EndSCHEMATC
