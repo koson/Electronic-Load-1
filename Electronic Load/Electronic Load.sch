@@ -14,17 +14,6 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L pspice:MNMOS M1
-U 1 1 610F10CA
-P 7550 3550
-F 0 "M1" H 7500 3800 50  0000 L CNN
-F 1 "MNMOS" H 7300 3700 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:TO-263-2" H 7525 3550 50  0001 C CNN
-F 3 "~" H 7525 3550 50  0001 C CNN
-	1    7550 3550
-	1    0    0    -1  
-$EndComp
-$Comp
 L Sensor_Current:ACS758xCB-150U-PFF U5
 U 1 1 610F1FA1
 P 7000 2750
@@ -37,10 +26,6 @@ F 3 "http://www.allegromicro.com/~/media/Files/Datasheets/ACS758-Datasheet.ashx?
 $EndComp
 Wire Wire Line
 	7650 3750 7650 3850
-Wire Wire Line
-	7750 3750 7750 3850
-Wire Wire Line
-	7750 3850 7650 3850
 Connection ~ 7650 3850
 Wire Wire Line
 	7650 3850 7650 3950
@@ -59,23 +44,23 @@ RETURN
 $Comp
 L power:GND #PWR018
 U 1 1 610F9C63
-P 9950 3550
-F 0 "#PWR018" H 9950 3300 50  0001 C CNN
-F 1 "GND" H 9955 3377 50  0000 C CNN
-F 2 "" H 9950 3550 50  0001 C CNN
-F 3 "" H 9950 3550 50  0001 C CNN
-	1    9950 3550
+P 10350 3550
+F 0 "#PWR018" H 10350 3300 50  0001 C CNN
+F 1 "GND" H 10355 3377 50  0000 C CNN
+F 2 "" H 10350 3550 50  0001 C CNN
+F 3 "" H 10350 3550 50  0001 C CNN
+	1    10350 3550
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+5V #PWR017
 U 1 1 610FA16B
-P 10650 750
-F 0 "#PWR017" H 10650 600 50  0001 C CNN
-F 1 "+5V" H 10665 923 50  0000 C CNN
-F 2 "" H 10650 750 50  0001 C CNN
-F 3 "" H 10650 750 50  0001 C CNN
-	1    10650 750 
+P 11050 750
+F 0 "#PWR017" H 11050 600 50  0001 C CNN
+F 1 "+5V" H 11065 923 50  0000 C CNN
+F 2 "" H 11050 750 50  0001 C CNN
+F 3 "" H 11050 750 50  0001 C CNN
+	1    11050 750 
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -120,11 +105,11 @@ $EndComp
 Wire Wire Line
 	7450 3850 7650 3850
 Wire Wire Line
-	10550 850  10650 850 
+	10950 850  11050 850 
 Wire Wire Line
-	10650 850  10650 750 
+	11050 850  11050 750 
 Wire Wire Line
-	9950 3450 9950 3500
+	10350 3450 10350 3500
 Text Notes 6300 2650 0    50   ~ 0
 26.7mV/A
 $Comp
@@ -311,22 +296,20 @@ EncB
 $Comp
 L power:GND #PWR06
 U 1 1 61141B6B
-P 2100 4550
-F 0 "#PWR06" H 2100 4300 50  0001 C CNN
-F 1 "GND" H 2105 4377 50  0000 C CNN
-F 2 "" H 2100 4550 50  0001 C CNN
-F 3 "" H 2100 4550 50  0001 C CNN
-	1    2100 4550
-	1    0    0    -1  
+P 2100 4300
+F 0 "#PWR06" H 2100 4050 50  0001 C CNN
+F 1 "GND" H 2105 4127 50  0000 C CNN
+F 2 "" H 2100 4300 50  0001 C CNN
+F 3 "" H 2100 4300 50  0001 C CNN
+	1    2100 4300
+	0    -1   -1   0   
 $EndComp
-Text GLabel 2100 4300 2    50   Input ~ 0
+Text GLabel 2100 4500 2    50   Input ~ 0
 Enc_SW
 Wire Wire Line
 	2000 4300 2100 4300
 Wire Wire Line
 	2000 4500 2100 4500
-Wire Wire Line
-	2100 4500 2100 4550
 Text GLabel 2050 1550 2    50   Input ~ 0
 MISO
 Text GLabel 2050 1250 2    50   Input ~ 0
@@ -493,7 +476,7 @@ U 1 1 61175625
 P 4200 500
 F 0 "U3" H 4428 76  50  0000 L CNN
 F 1 "SSD1306" H 4428 -15 50  0000 L CNN
-F 2 "" H 4200 500 50  0001 C CNN
+F 2 "OLED:SSD1306_OLED" H 4200 500 50  0001 C CNN
 F 3 "" H 4200 500 50  0001 C CNN
 	1    4200 500 
 	1    0    0    -1  
@@ -599,12 +582,10 @@ F 3 "~" H 5700 1700 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	9650 3450 9650 3500
+	10050 3500 10350 3500
+Connection ~ 10350 3500
 Wire Wire Line
-	9650 3500 9950 3500
-Connection ~ 9950 3500
-Wire Wire Line
-	9950 3500 9950 3550
+	10350 3500 10350 3550
 $Comp
 L Device:R R6
 U 1 1 61160196
@@ -707,79 +688,26 @@ Wire Wire Line
 	1350 4500 1350 4550
 Wire Wire Line
 	1100 4550 1350 4550
-$Comp
-L pspice:MNMOS M2
-U 1 1 611B1018
-P 8250 3550
-F 0 "M2" H 8200 3800 50  0000 L CNN
-F 1 "MNMOS" H 8000 3700 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:TO-263-2" H 8225 3550 50  0001 C CNN
-F 3 "~" H 8225 3550 50  0001 C CNN
-	1    8250 3550
-	1    0    0    -1  
-$EndComp
-$Comp
-L pspice:MNMOS M3
-U 1 1 611B1745
-P 9100 3500
-F 0 "M3" H 9050 3750 50  0000 L CNN
-F 1 "MNMOS" H 8850 3650 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:TO-263-2" H 9075 3500 50  0001 C CNN
-F 3 "~" H 9075 3500 50  0001 C CNN
-	1    9100 3500
-	1    0    0    -1  
-$EndComp
 Text GLabel 7150 3600 3    50   Input ~ 0
 Gate
 Text GLabel 8850 3550 3    50   Input ~ 0
 Gate
-Text GLabel 8000 3600 3    50   Input ~ 0
+Text GLabel 8100 3600 3    50   Input ~ 0
 Gate
 Wire Wire Line
-	8900 3500 8850 3500
-Wire Wire Line
 	8850 3500 8850 3550
-Wire Wire Line
-	8050 3550 8000 3550
-Wire Wire Line
-	8000 3550 8000 3600
 Wire Wire Line
 	7150 3600 7150 3550
 Connection ~ 7150 3550
 Wire Wire Line
 	7150 3550 7350 3550
-Wire Wire Line
-	8350 3350 8350 3200
-Wire Wire Line
-	8350 3200 7650 3200
 Connection ~ 7650 3200
 Wire Wire Line
 	7650 3200 7650 3350
 Wire Wire Line
 	9200 3300 9200 3200
 Wire Wire Line
-	9200 3200 8350 3200
-Connection ~ 8350 3200
-Wire Wire Line
-	8350 3750 8350 3850
-Wire Wire Line
-	8350 3850 7750 3850
-Connection ~ 7750 3850
-Wire Wire Line
-	8450 3750 8450 3850
-Wire Wire Line
-	8450 3850 8350 3850
-Connection ~ 8350 3850
-Wire Wire Line
 	9200 3700 9200 3850
-Connection ~ 8450 3850
-Wire Wire Line
-	9300 3700 9300 3850
-Wire Wire Line
-	8450 3850 9200 3850
-Connection ~ 9200 3850
-Wire Wire Line
-	9200 3850 9300 3850
 $Comp
 L Connector_Generic:Conn_01x02 J2
 U 1 1 6115859E
@@ -789,17 +717,6 @@ F 1 "Fan Connector" H 10580 4701 50  0000 L CNN
 F 2 "Connector_Harwin:Harwin_LTek-Male_02_P2.00mm_Vertical" H 10500 4800 50  0001 C CNN
 F 3 "~" H 10500 4800 50  0001 C CNN
 	1    10500 4800
-	1    0    0    -1  
-$EndComp
-$Comp
-L pspice:MNMOS M4
-U 1 1 6116A848
-P 10050 5200
-F 0 "M4" H 10000 5450 50  0000 L CNN
-F 1 "MNMOS" H 9800 5350 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:TO-263-2" H 10025 5200 50  0001 C CNN
-F 3 "~" H 10025 5200 50  0001 C CNN
-	1    10050 5200
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -824,15 +741,6 @@ F 3 "" H 10150 5500 50  0001 C CNN
 	1    10150 5500
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	10150 5400 10150 5450
-Wire Wire Line
-	10250 5400 10250 5450
-Wire Wire Line
-	10250 5450 10150 5450
-Connection ~ 10150 5450
-Wire Wire Line
-	10150 5450 10150 5500
 Wire Wire Line
 	10150 4700 10150 4800
 Wire Wire Line
@@ -913,12 +821,81 @@ Wire Wire Line
 $Comp
 L Connector:USB_C_Receptacle J5
 U 1 1 611AF3FF
-P 9950 1850
-F 0 "J5" H 10057 3117 50  0000 C CNN
-F 1 "USB_C_Receptacle" H 10057 3026 50  0000 C CNN
-F 2 "Connector_USB:USB_C_Receptacle_Amphenol_12401610E4-2A" H 10100 1850 50  0001 C CNN
-F 3 "https://www.usb.org/sites/default/files/documents/usb_type-c.zip" H 10100 1850 50  0001 C CNN
-	1    9950 1850
+P 10350 1850
+F 0 "J5" H 10457 3117 50  0000 C CNN
+F 1 "USB_C_Receptacle" H 10457 3026 50  0000 C CNN
+F 2 "Connector_USB:USB_C_Receptacle_Amphenol_12401610E4-2A" H 10500 1850 50  0001 C CNN
+F 3 "https://www.usb.org/sites/default/files/documents/usb_type-c.zip" H 10500 1850 50  0001 C CNN
+	1    10350 1850
 	1    0    0    -1  
 $EndComp
+NoConn ~ 1950 2050
+$Comp
+L Transistor_FET:IRFS4115 Q4
+U 1 1 611744E8
+P 10050 5200
+F 0 "Q4" H 10255 5246 50  0000 L CNN
+F 1 "IRFS3306" H 10255 5155 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:TO-263-2" H 10250 5125 50  0001 L CIN
+F 3 "https://www.infineon.com/dgdl/irfs4115pbf.pdf?fileId=5546d462533600a401535636e5d2218f" H 10050 5200 50  0001 L CNN
+	1    10050 5200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10150 5400 10150 5500
+$Comp
+L Transistor_FET:IRFS4115 Q1
+U 1 1 611758CE
+P 7550 3550
+F 0 "Q1" H 7755 3596 50  0000 L CNN
+F 1 "IRFS3306" H 7650 3400 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:TO-263-2" H 7750 3475 50  0001 L CIN
+F 3 "https://www.infineon.com/dgdl/irfs4115pbf.pdf?fileId=5546d462533600a401535636e5d2218f" H 7550 3550 50  0001 L CNN
+	1    7550 3550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_FET:IRFS4115 Q2
+U 1 1 61178B60
+P 8350 3550
+F 0 "Q2" H 8555 3596 50  0000 L CNN
+F 1 "IRFS3306" H 8450 3400 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:TO-263-2" H 8550 3475 50  0001 L CIN
+F 3 "https://www.infineon.com/dgdl/irfs4115pbf.pdf?fileId=5546d462533600a401535636e5d2218f" H 8350 3550 50  0001 L CNN
+	1    8350 3550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_FET:IRFS4115 Q3
+U 1 1 61179166
+P 9100 3500
+F 0 "Q3" H 9305 3546 50  0000 L CNN
+F 1 "IRFS3306" H 9305 3455 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:TO-263-2" H 9300 3425 50  0001 L CIN
+F 3 "https://www.infineon.com/dgdl/irfs4115pbf.pdf?fileId=5546d462533600a401535636e5d2218f" H 9100 3500 50  0001 L CNN
+	1    9100 3500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8150 3550 8100 3550
+Wire Wire Line
+	8100 3550 8100 3600
+Wire Wire Line
+	7650 3850 8450 3850
+Wire Wire Line
+	7650 3200 8450 3200
+Wire Wire Line
+	8450 3350 8450 3200
+Connection ~ 8450 3200
+Wire Wire Line
+	8450 3200 9200 3200
+Wire Wire Line
+	8450 3750 8450 3850
+Connection ~ 8450 3850
+Wire Wire Line
+	8450 3850 9200 3850
+Wire Wire Line
+	8850 3500 8900 3500
+Wire Wire Line
+	10050 3450 10050 3500
 $EndSCHEMATC
