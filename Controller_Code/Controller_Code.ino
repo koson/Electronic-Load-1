@@ -18,6 +18,8 @@ void changeCurrent(); //Function prototype to run when the switch is pressed
 #define tempPin  A7 //defines which pin the temp sensor is read on
 #define feedbackPin A0 //defines which pin the feedback voltage is read on
 #define switchPin 8 //define which pin the switch to change the set current lives on
+#define encA 1 //define the pin the A signal for the rotary encoder is on
+#define encB 2 //define the pin the B signal for the rotary encoder is on
 
 #define fanOnTemp 50 //define the temperature at which the fan turns on
 #define thermalLimit 100 //defines the temperature at which the MOSFETS will turn off to avoid damage
@@ -30,11 +32,14 @@ void changeCurrent(); //Function prototype to run when the switch is pressed
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1); //Create the oled screen variable
 
 int barGraphLevel = 0; //Holds the level for the bar graph
-int currentReading = 0; //Holds the current measured by the ADC
-int currentSet = 0; //Holds the setting the load will try and maintain
+double currentReading = 0; //Holds the current measured by the ADC
+double currentSet = 0; //Holds the setting the load will try and maintain
 bool currentChanging = 0; //holds whether the current level will be changing, changes when the switch is pressed and after a short timeout with no changes from the rotary encoder
 
 double tempcoeff[5] = {-511.9587, 435.7398, -153.1109, 29.91921,-1.633023}; //defines the 4th order polynomial the temperature is read from
+
+bool AState = 0; //Holds the states of the rotary encoder pins to know what direction it is spinning
+bool BState = 0;
 
 unsigned long lastChangeTime = 0;
 
@@ -46,7 +51,19 @@ void setup() {
     for(;;); // Don't proceed, loop forever
   }
 
+  //Setup pins for input or output based on what they do
+  pinMode(encA, INPUT);
+  pinMode(encB, INPUT);
+
+  pinMode(switchPin, INPUT);
   attachInterrupt(digitalPinToInterrupt(switchPin), changeCurrent, FALLING); //Have the switch able to interrupt the system to set the current level
+
+  pinMode(feedbackPin, INPUT);
+
+  pinMode(fanPin, OUTPUT);
+  pinMode(errorPin, OUTPUT);
+
+  
 }
 
 void loop() {
@@ -63,15 +80,28 @@ void loop() {
   }else{ //otherwise, not enough power is flowing to need the fan
     digitalWrite(fanPin, LOW);
   }
-
-  while(currentChanging == 1 && millis()-lastChangeTime < timeout){ //If the current needs to change, then wait for the changes to finish without allowing anything else to change
-    //put code to run when the current needs to change
-  }
-
   currentReading = map(analogRead(feedbackPin)*(5.0/1023.0)*0.0267; //Read the analog voltage and convert it to a current reading via the current sensor
 
   setDisplay(); //Set the variables on the screen
-
+  
+  while(currentChanging == 1 && millis() - lastChangeTime < timeout){ //If the current needs to change, then wait for the changes to finish without allowing anything else to change (This is a polling method but is okay since the switch triggers it)
+    if(digitalRead(encA) != AState && digitalRead(encB) == 1 && digitalRead(encA) == 0){ //If the A pin changed and B is high, then the system has rotated clockwise, so we increment the current set value
+      currentSet += 0.25; //Add a 1/4A to the current value
+      lastChangeTime = millis(); //Update when the last time a change occurred
+      AState = !AState; //Toggle the state
+    }else if(digitalRead(encB) != BState && digitalRead(encA) == 1 && digitalRead(encB) == 0){//otherwise it has rotated counterclockwise, so decrement the current set value by 0.25A
+      currentSet -=0.25;
+      lastChangeTime = millis(); //Update when the last time a change occured
+      BState = !BState; //Toggle the state
+    }else if(digitalRead(encA) != AState && digitalRead(encB) == 0){ //This is an intermediary state and should be ignored except to change the state
+      AState = !AState; //Toggle the state, a single detent has been traversed at this point
+    }else if(digitalRead(encB) != BState && digitalRead(encA) == 1 && digitalRead(encB) == 1) {//This is an intermediary state and should be ignored except to change the state
+      BState = !BState; //Toggle the state, a single detent has been traversed at this point
+    }
+  }
+  
+  currentChanging = 0; //Set that the current shouldn't change anymore (It is written every loop, but putting it here like this ensures that by the next loop, the while loop will not execute unless the switch is pressed again)
+  //(Since the while loop is the last thing to check, it is unlikely the switch will be missed, most likely the program will be inside the delay when the interrupt is triggered and so will be caught when the while loop next executes)
   delay(500);
 }
 
@@ -110,4 +140,5 @@ void setDisplay(){
 
 void changeCurrent(){
   currentChanging = 1; //set the status to allow changing the current
+  lastChangeTime = millis();
 }
