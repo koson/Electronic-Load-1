@@ -90,7 +90,7 @@ void loop() {
       lastChangeTime = millis(); //Update when the last time a change occurred
       AState = !AState; //Toggle the state
     }else if(digitalRead(encB) != BState && digitalRead(encA) == 1 && digitalRead(encB) == 0){//otherwise it has rotated counterclockwise, so decrement the current set value by 0.25A
-      currentSet -=0.25;
+      currentSet -= 0.25;
       lastChangeTime = millis(); //Update when the last time a change occured
       BState = !BState; //Toggle the state
     }else if(digitalRead(encA) != AState && digitalRead(encB) == 0){ //This is an intermediary state and should be ignored except to change the state

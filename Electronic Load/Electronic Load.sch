@@ -110,43 +110,6 @@ Wire Wire Line
 	10350 3450 10350 3500
 Text Notes 6300 2650 0    50   ~ 0
 26.7mV/A
-$Comp
-L Amplifier_Operational:OPA2277 U5
-U 3 1 61101BF2
-P 6450 7050
-F 0 "U5" H 6408 7096 50  0000 L CNN
-F 1 "OPA2277" H 6408 7005 50  0000 L CNN
-F 2 "" H 6450 7050 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/opa2277.pdf" H 6450 7050 50  0001 C CNN
-	3    6450 7050
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+5V #PWR020
-U 1 1 61108070
-P 6350 6650
-F 0 "#PWR020" H 6350 6500 50  0001 C CNN
-F 1 "+5V" H 6365 6823 50  0000 C CNN
-F 2 "" H 6350 6650 50  0001 C CNN
-F 3 "" H 6350 6650 50  0001 C CNN
-	1    6350 6650
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR021
-U 1 1 61108537
-P 6350 7450
-F 0 "#PWR021" H 6350 7200 50  0001 C CNN
-F 1 "GND" H 6355 7277 50  0000 C CNN
-F 2 "" H 6350 7450 50  0001 C CNN
-F 3 "" H 6350 7450 50  0001 C CNN
-	1    6350 7450
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	6350 6650 6350 6750
-Wire Wire Line
-	6350 7350 6350 7450
 Text Notes 6350 2900 0    50   ~ 0
 0.6V Min
 $Comp
@@ -167,12 +130,12 @@ Wire Wire Line
 $Comp
 L power:+5V #PWR016
 U 1 1 6111B03E
-P 4600 2350
-F 0 "#PWR016" H 4600 2200 50  0001 C CNN
-F 1 "+5V" H 4615 2523 50  0000 C CNN
-F 2 "" H 4600 2350 50  0001 C CNN
-F 3 "" H 4600 2350 50  0001 C CNN
-	1    4600 2350
+P 4700 2300
+F 0 "#PWR016" H 4700 2150 50  0001 C CNN
+F 1 "+5V" H 4715 2473 50  0000 C CNN
+F 2 "" H 4700 2300 50  0001 C CNN
+F 3 "" H 4700 2300 50  0001 C CNN
+	1    4700 2300
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -183,28 +146,6 @@ Text GLabel 5050 3650 0    50   Input ~ 0
 Vout
 Wire Wire Line
 	5750 3550 7150 3550
-$Comp
-L Device:R R6
-U 1 1 61131D4B
-P 4600 2550
-F 0 "R6" H 4670 2596 50  0000 L CNN
-F 1 "R" H 4670 2505 50  0000 L CNN
-F 2 "Resistor_SMD:R_1206_3216Metric" V 4530 2550 50  0001 C CNN
-F 3 "~" H 4600 2550 50  0001 C CNN
-	1    4600 2550
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R R7
-U 1 1 61132207
-P 4600 3150
-F 0 "R7" H 4670 3196 50  0000 L CNN
-F 1 "R" H 4670 3105 50  0000 L CNN
-F 2 "Resistor_SMD:R_1206_3216Metric" V 4530 3150 50  0001 C CNN
-F 3 "~" H 4600 3150 50  0001 C CNN
-	1    4600 3150
-	1    0    0    -1  
-$EndComp
 $Comp
 L Electronic~Load:MCP4551 U2
 U 1 1 6113432E
@@ -217,11 +158,7 @@ F 3 "" H 3650 2400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4600 2350 4600 2400
-Wire Wire Line
-	4600 2700 4300 2700
-Wire Wire Line
-	4300 3000 4600 3000
+	4700 2300 4700 2350
 Wire Wire Line
 	4600 3300 4600 3350
 Wire Wire Line
@@ -1106,4 +1043,38 @@ Wire Wire Line
 Wire Wire Line
 	1950 2150 2050 2150
 NoConn ~ 1950 1350
+$Comp
+L Device:R_POT RV2
+U 1 1 611EDD64
+P 4700 2500
+F 0 "RV2" H 4630 2454 50  0000 R CNN
+F 1 "R_POT" H 4630 2545 50  0000 R CNN
+F 2 "Potentiometer_THT:Potentiometer_Bourns_3266Y_Vertical" H 4700 2500 50  0001 C CNN
+F 3 "~" H 4700 2500 50  0001 C CNN
+	1    4700 2500
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	4550 2500 4450 2500
+Wire Wire Line
+	4450 2500 4450 2700
+Wire Wire Line
+	4450 2700 4300 2700
+$Comp
+L Device:R_POT RV1
+U 1 1 611F7F26
+P 4600 3150
+F 0 "RV1" H 4530 3104 50  0000 R CNN
+F 1 "R_POT" H 4530 3195 50  0000 R CNN
+F 2 "Potentiometer_THT:Potentiometer_Bourns_3266Y_Vertical" H 4600 3150 50  0001 C CNN
+F 3 "~" H 4600 3150 50  0001 C CNN
+	1    4600 3150
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	4300 3000 4400 3000
+Wire Wire Line
+	4400 3000 4400 3150
+Wire Wire Line
+	4400 3150 4450 3150
 $EndSCHEMATC
