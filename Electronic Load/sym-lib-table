@@ -1,3 +1,4 @@
 (sym_lib_table
-  (lib (name "Electronic Load")(type Legacy)(uri "${KIPRJMOD}/Electronic Load.lib")(options "")(descr ""))
+  (lib (name "Electronic Load")(type "Legacy")(uri "${KIPRJMOD}/Electronic Load.lib")(options "")(descr ""))
+  (lib (name "Electronic-Load-rescue")(type "Legacy")(uri "${KIPRJMOD}/Electronic Load-rescue.lib")(options "")(descr ""))
 )
